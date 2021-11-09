@@ -22,9 +22,8 @@ module.exports = {
     checkUserExistById: async (req, res, next) => {
         try {
             const { user_id } = req.params;
-            const { _id } = req.user;
-
-            const user = await User.findById(user_id || _id).select('-__v');
+           
+            const user = await User.findById(user_id).select('-__v');
 
             if (!user) {
                 throw new ErrorHandler(ENTITY_NOT_FOUND.message, ENTITY_NOT_FOUND.status);
